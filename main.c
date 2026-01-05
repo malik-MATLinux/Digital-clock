@@ -25,7 +25,10 @@ int main(){
         time(&seconds_dump);
         pTime = localtime(&seconds_dump);
 
-        printf("\r%02d:%02d:%02d", pTime->tm_hour, pTime->tm_min, pTime->tm_sec);
+        /*
+            Below code add date in addition to current time.
+        */
+        printf("\rTime %02d:%02d:%02d Date %02d/%02d/%1d", pTime->tm_hour, pTime->tm_min, pTime->tm_sec, pTime->tm_mday, pTime->tm_mon + 1, pTime->tm_year);
         fflush(stdout); // This line will flush the buffer as it's the time is not being updated, it was just stuck on one stdout line. So adding this mean the \r is handled by the C standard library (stdio) and not the terminal ide nor the editor line ending...
         sleep(1);
     }
