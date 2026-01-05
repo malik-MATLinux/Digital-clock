@@ -12,22 +12,24 @@ int main(){
         2. a boolean variable to use for the while loop
         3. a struct pointer variable of tm struct
      */
-    time_t seconds_from_start = 0; //to clear any unwanted data from prev prog.
-    bool isRunning = true;
-    struct tm *pTime = NULL;
     
     /*Declare the while loop to run every 1 sec*/
-    while (isRunning)
-    {
-        time(&seconds_from_start);
-        pTime = localtime(&seconds_from_start);
-        
-        printf("%02d:%02d:%02d\n\n", pTime->tm_hour, pTime->tm_min, pTime->tm_sec);
+    printf("This is the Digital clock\n\n");
+    time_t seconds_dump;
+    bool isTrue = true;
+    struct tm *pTime = NULL;
 
+    while (isTrue)
+    {
+        /* Below code runs while isTrue value is True */
+        time(&seconds_dump);
+        pTime = localtime(&seconds_dump);
+
+        printf("\r%02d:%02d:%02d", pTime->tm_hour, pTime->tm_min, pTime->tm_sec);
+        fflush(stdout); // This line will flush the buffer as it's the time is not being updated, it was just stuck on one stdout line. So adding this mean the \r is handled by the C standard library (stdio) and not the terminal ide nor the editor line ending...
         sleep(1);
     }
     
 
-    printf("This is the Digital clock");
     return 0;
 }
