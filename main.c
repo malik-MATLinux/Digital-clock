@@ -4,6 +4,8 @@
 #include <time.h> // This is because we'll use a time function
 #include <unistd.h> // This is to be able to run a unix command: sleep
 
+void displaytimedate(bool isTrue, time_t seconds_dump, struct tm *pTime);
+
 int main(){
 
     /*
@@ -18,7 +20,13 @@ int main(){
     time_t seconds_dump;
     bool isTrue = true;
     struct tm *pTime = NULL;
+    
+    displaytimedate(isTrue, seconds_dump, pTime);
 
+    return 0;
+}
+
+void displaytimedate(bool isTrue, time_t seconds_dump, struct tm *pTime){
     while (isTrue)
     {
         /* Below code runs while isTrue value is True */
@@ -32,7 +40,4 @@ int main(){
         fflush(stdout); // This line will flush the buffer as it's the time is not being updated, it was just stuck on one stdout line. So adding this mean the \r is handled by the C standard library (stdio) and not the terminal ide nor the editor line ending...
         sleep(1);
     }
-    
-
-    return 0;
 }
